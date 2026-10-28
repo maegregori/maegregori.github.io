@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cielo Mae Valdez | BSIT Student Portfolio</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --border: #30363d;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --pink: #f778ba;
+  --pink-soft: rgba(247, 120, 186, 0.15);
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px; line-height: 1.5;
+}
+a { color: var(--pink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+/* Header bar */
+nav { background: var(--surface); border-bottom: 1px solid var(--border); }
+nav .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; padding-bottom: 16px; flex-wrap: wrap; gap: 8px; }
+.logo { font-weight: 600; color: var(--text); }
+nav ul { list-style: none; display: flex; gap: 16px; }
+nav ul a { color: var(--text); font-size: .9rem; }
+nav ul a:hover { color: var(--muted); text-decoration: none; }
+
+/* Profile */
+.profile { display: flex; gap: 24px; align-items: center; padding: 40px 0 24px; flex-wrap: wrap; }
+.avatar {
+  width: 120px; height: 120px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--pink); outline: 2px solid var(--bg); outline-offset: -4px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; color: var(--muted);
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.profile h1 { font-size: 1.8rem; font-weight: 600; line-height: 1.25; }
+.username { color: var(--muted); font-size: 1.1rem; font-weight: 300; }
+.profile p { margin-top: 8px; color: var(--text); }
+.btn {
+  display: inline-block; margin-top: 12px; padding: 5px 16px;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-radius: 6px; font-size: .9rem; font-weight: 500;
+}
+.btn:hover { border-color: var(--muted); text-decoration: none; }
+
+/* Sections */
+section { padding: 24px 0; }
+h2 { font-size: 1.3rem; font-weight: 600; padding-bottom: 8px; margin-bottom: 16px; border-bottom: 1px solid var(--border); }
+
+.box { border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
+.box-head { padding: 10px 16px; border-bottom: 1px solid var(--border); font-size: .85rem; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+.box-body { padding: 16px; }
+
+/* Mini Education Styling */
+.edu-divider { border: 0; border-top: 1px solid var(--border); margin: 16px 0; }
+.edu-title { font-size: .9rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.edu-item { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+.edu-item + .edu-item { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border);}
+.edu-degree { font-weight: 600; color: var(--text); }
+.edu-school { color: var(--muted); font-size: .9rem; }
+.edu-year { color: var(--pink); font-size: .85rem; font-weight: 500; }
+
+.skills { display: flex; flex-wrap: wrap; gap: 8px; }
+.skills span { background: var(--pink-soft); color: var(--pink); padding: 2px 12px; border-radius: 999px; font-size: .85rem; font-weight: 500; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.card { border: 1px solid var(--border); border-radius: 6px; padding: 16px; background: var(--surface); display: flex; flex-direction: column; justify-content: space-between; }
+.card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.card h3 { font-size: 1rem; font-weight: 600; color: var(--text); }
+.badge { border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px; font-size: .75rem; color: var(--muted); }
+.card p { color: var(--muted); font-size: .9rem; margin-bottom: 12px; }
+.cert-issuer { font-size: .9rem; color: var(--muted); margin-bottom: 4px; }
+.cert-date { font-size: .85rem; color: var(--pink); font-weight: 500; margin-bottom: 12px; }
+.btn-pdf {
+  display: inline-block; text-align: center; padding: 6px 12px;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-radius: 6px; font-size: .85rem; font-weight: 500;
+  transition: border-color 0.2s;
+}
+.btn-pdf:hover { border-color: var(--pink); text-decoration: none; color: var(--pink); }
+
+.lang { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+.contact li { list-style: none; padding: 6px 0; }
+.contact span { color: var(--muted); display: inline-block; width: 80px; }
+
+@media (max-width: 520px) {
+  .profile { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="logo">E-Folio</span>
+    <ul>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="wrap profile">
+  <div class="avatar"><img src="profile.jpg" alt="Cielo Mae Valdez"></div>
+  <div>
+    <h1>Cielo Mae Valdez <span class="username">· she/her </span></h1>
+    <p>3rd Year BSIT student.</p>
+    <a class="btn" href="#projects">View Projects</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="about">
+  <h2>About Me.</h2>
+  <div class="box">
+    <div class="box-head">README.md</div>
+    <div class="box-body">
+      <p>Hello! I'm Cielo. 👩‍💻🩷</p>
+      <p>🚌 An IT Student from the Polytechnic University of the Philippines. I am passionate about web development, database management, and building user-friendly software solutions.</p>
+      
+      <hr class="edu-divider">
+      
+      <div class="edu-title">Education</div>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">BS in Information Technology</div>
+          <div class="edu-school">Polytechnic University of the Philippines</div>
+        </div>
+        <span class="edu-year">2024 – Present</span>
+      </div>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">Senior High School - ICT Strand</div>
+          <div class="edu-school">The National Teachers College</div>
+        </div>
+        <span class="edu-year">2021 – 2023</span>
+      </div>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">Junior High School - Special Science Class Program</div>
+          <div class="edu-school">Victorino Mapa High School</div>
+        </div>
+        <span class="edu-year">2017 – 2021</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="skills">
+    <h2>Skills.</h2>
+    <div class="skills">
+      <span>Java</span>
+      <span>C++</span>
+      <span>HTML &amp; CSS</span>
+      <span>PHP</span>
+      <span>SQL</span>
+      <span>Networking</span>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects.</h2>
+    <div class="grid">
+      <div class="card">
+        <div>
+          <div class="card-top"><h3>ePDS: CSC PDS Form Registry Management System</h3><span class="badge">Public</span></div>
+          <p>A desktop-based database management application developed in Java using Swing and AWT, connected to a cloud-hosted Aiven MySQL database via JDBC.</p>
+        </div>
+        <div>
+          <div style="display: flex; gap: 12px; margin-bottom: 12px;">
+            <div class="lang"><span class="dot" style="background:#b07219"></span>Java</div>
+            <div class="lang"><span class="dot" style="background:#1935b0"></span>MySQL</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div>
+          <div class="card-top"><h3>IskoFound: Campus Lost and Found App Prototype</h3><span class="badge">Public</span></div>
+          <p>A platform concept that helps students report and find lost items on campus.</p>
+          <p style="font-size: 0.85rem; color: var(--muted);">In partial fulfillment for COMP 013 - HCI.</p>
+        </div>
+        <div>
+          <div style="display: flex; gap: 12px; margin-bottom: 12px;">
+            <div class="lang"><span class="dot" style="background:#f778ba"></span>Figma</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates Section Added Below Projects -->
+  <section id="certificates">
+    <h2>Certificates.</h2>
+    <div class="grid">
+      <div class="card">
+        <div>
+          <div class="card-top"><h3>Networking Basics</h3><span class="badge">Verified</span></div>
+          <div class="cert-issuer">Cisco Networking Academy</div>
+          <div class="cert-date">November 15, 2025</div>
+          <p>Validates foundational understanding of networking concepts, protocols, and devices.</p>
+        </div>
+        <a href="Networking Basics.pdf" target="_blank" class="btn-pdf">Open PDF</a>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="card-top"><h3>Introduction to Cloud</h3><span class="badge">Verified</span></div>
+          <div class="cert-issuer">Cognitive Class (Powered by IBM)</div>
+          <div class="cert-date">October 20, 2026</div>
+          <p>Validates foundational understanding of cloud computing models, infrastructure, and core services.</p>
+        </div>
+        <a href="Cognitive Class.pdf" target="_blank" class="btn-pdf">Open PDF</a>
+      </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contacts.</h2>
+    <ul class="contact">
+      <li><span>Email</span><a href="mailto:cielomae.gvaldez@gmail.com">cielomae.gvaldez@gmail.com</a></li>
+      <li><span>GitHub</span><a href="https://github.com/maegregori">github.com/maegregori</a></li>
+      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/cielo-mae-valdez">linkedin.com/in/cielomaevaldez</a></li>
+      <li><span>Location</span>Manila, Philippines</li>
+    </ul>
+  </section>
+</main>
+
+</body>
+</html>
